@@ -524,19 +524,3 @@ int check_marks(BST* bst, int Get_ID) {
     return marks(bst, Get_ID, 0);
 }
 
-// Free all nodes in the BST
-void free_bst(Node* node) {
-    if (node != NULL) {
-        free_bst(node->left);
-        free_bst(node->right);
-        free(node);
-    }
-}
-
-// Cleanup BST
-void destroy_bst(BST* bst) {
-    if (bst != NULL) {
-        free_bst(bst->root);
-        free(bst);
-    }
-}
