@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Management</title>
+</head>
+<body>
+    <h1>Employee Management System</h1>
+
+    <h2>Insert Employee</h2>
+    <form id="insertForm">
+        Post ID: <input type="number" id="post_id"><br>
+        Name: <input type="text" id="name"><br>
+        Age: <input type="number" id="age"><br>
+        <button type="submit">Insert</button>
+    </form>
+
+    <h2>Search Employee</h2>
+    <input type="number" id="search_id">
+    <button onclick="searchEmployee()">Search</button>
+    <pre id="result"></pre>
+
+    <script>
+        document.getElementById('insertForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let data = {
+                post_id: document.getElementById('post_id').value,
+                name: document.getElementById('name').value,
+                age: document.getElementById('age').value
+            };
+            fetch('/insert', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) })
+                .then(res => res.json())
+                .then(out => alert('Inserted'));
+        });
+
+        function searchEmployee() {
+            let id = document.getElementById('search_id').value;
+            fetch(`/search/${id}`)
+                .then(res => res.json())
+                .then(out => document.getElementById('result').innerText = out.output);
+        }
+    </script>
+</body>
+</html>
