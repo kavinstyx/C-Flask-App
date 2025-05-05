@@ -4,6 +4,8 @@
 #include <string.h>
 #include <ctype.h>
 
+#define MAX_NAME_LENGTH 100
+
 // Function prototypes
 int main();
 void Choices(int access, int ID);
@@ -20,7 +22,7 @@ void search_marks(int access, int ID);
 // Global BST
 BST* bst;
 
-// Function to authenticate users and return access level
+// Password and Access Level Checker
 int Check_Password_Admin(const char* s, int post_ID) {
     const char* pw1 = "Chairman";    // Chairman
     const char* pw2 = "Director1";   // Director1
@@ -52,6 +54,72 @@ int Check_Password_Admin(const char* s, int post_ID) {
         printf("Password or Post ID is incorrect. Please re-enter the Password and the Post ID\n\n");
         return 0;
     }
+}
+
+// Main Menu Options
+void Choices(int access, int ID) {
+    printf("*** Main Menu ***\n\n");
+
+    printf("\t1. Insert Employee\n");
+    printf("\t2. Search Employee Details\n");
+    printf("\t3. Promote Employee\n");
+    printf("\t4. Retire Employee\n");
+    printf("\t5. Print All Employees\n");
+    printf("\t6. Exit\n\n");
+
+    printf("\tEnter your choice: ");
+    int choice;
+    scanf("%d", &choice);
+    printf("\n");
+
+    switch (choice) {
+        case 1:
+            insert_employee(access, ID);
+            break;
+        case 2:
+            search_details(access, ID);
+            break;
+        case 3:
+            promote_employee(access, ID);
+            break;
+        case 4:
+            retire_employee(access, ID);
+            break;
+        case 5:
+            print_all(access, ID);
+            break;
+        case 6:
+            printf("Exiting...\n");
+            exit(0);
+        default:
+            printf("Invalid choice.\n");
+            Choices(access, ID);
+    }
+}
+
+// Entry point of program
+int main() {
+    // Initialize BST
+    bst = create_bst();
+
+    // Dummy login simulation
+    printf("Enter password: ");
+    char password[50];
+    scanf("%s", password);
+
+    printf("Enter Post ID: ");
+    int post_id;
+    scanf("%d", &post_id);
+
+    int access_level = Check_Password_Admin(password, post_id);
+
+    if (access_level > 0) {
+        Choices(access_level, post_id);
+    } else {
+        printf("Login failed.\n");
+    }
+
+    return 0;
 }
 
 // Function to add employee data to the system
@@ -232,4 +300,25 @@ void retire_employee(int access, int ID) {
         main();
     else
         printf("\n\tThank you Have a Good day!!!\n");
+}
+
+// Placeholder for print_all function
+void print_all(int access, int ID) {
+    printf("*** Printing all employees ***\n\n");
+    in_order_traversal(bst->root);  // Make sure this is defined in bst.c
+
+    int input;
+    printf("\n\t1 . Back to Main Menu\n");
+    printf("\t2 . Re-Login\n");
+    printf("\t3 . Exit\n\n");
+    printf("\tEnter your choice : ");
+    scanf("%d", &input);
+    printf("\n");
+
+    if (input == 1)
+        Choices(access, ID);
+    else if (input == 2)
+        main();
+    else
+        printf("\nThank you, Have a Good day!!!\n");
 }
