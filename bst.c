@@ -14,6 +14,20 @@ void initialize_bst(BST* bst) {
     bst->root = NULL;
     bst->size = 0;
 }
+void free_bst(Node* node) {
+    if (node != NULL) {
+        free_bst(node->left);
+        free_bst(node->right);
+        free(node);
+    }
+}
+
+void destroy_bst(BST* bst) {
+    if (bst != NULL) {
+        free_bst(bst->root);
+        free(bst);
+    }
+}
 
 // Create a new node
 Node* create_node(int k, const char* name, int age) {

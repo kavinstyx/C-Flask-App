@@ -46,5 +46,6 @@ void swap_for_promote(Node* first, Node* second);
 void heapify(Node* current);
 void release_heap(Node* current);
 void promote(BST* bst, int promoting_ID, Node* node);
+void destroy_bst(BST* bst);
 
 #endif /* BST_H */
