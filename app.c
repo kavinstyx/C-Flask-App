@@ -10,8 +10,7 @@ void search_details(int access, int ID);
 void promote_employee(int access, int ID);
 void retire_employee(int access, int ID);
 
-// Dummy global BST for demo/testing
-BST* bst;
+
 
 int Check_Password_Admin(const char* s, int post_ID); // Defined elsewhere
 
