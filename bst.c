@@ -28,6 +28,14 @@ void destroy_bst(BST* bst) {
         free(bst);
     }
 }
+// In-order traversal to print all employees
+void in_order_traversal(Node* node) {
+    if (node != NULL) {
+        in_order_traversal(node->left);
+        printf("Post ID: %d, Name: %s, Age: %d\n", node->id, node->name, node->age);
+        in_order_traversal(node->right);
+    }
+}
 
 // Create a new node
 Node* create_node(int k, const char* name, int age) {

@@ -36,6 +36,8 @@ void delete_node(BST* bst, int key);
 int salary_calculation(BST* bst, int Get_ID);
 int marks(BST* bst, int Get_ID, int addmarks);
 int check_marks(BST* bst, int Get_ID);
+// bst.h
+void in_order_traversal(Node* node);
 
 // Helper function prototypes
 void inorder(Node* node);

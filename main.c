@@ -4,7 +4,7 @@
 #include <string.h>
 #include <ctype.h>
 
-#define MAX_NAME_LENGTH 100
+
 
 // Function prototypes
 int main();
