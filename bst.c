@@ -32,7 +32,7 @@ void destroy_bst(BST* bst) {
 void in_order_traversal(Node* node) {
     if (node != NULL) {
         in_order_traversal(node->left);
-        printf("Post ID: %d, Name: %s, Age: %d\n", node->id, node->name, node->age);
+        printf("Post ID: %d, Name: %s, Age: %d\n", node->post_ID, node->Employee_Name, node->Age);
         in_order_traversal(node->right);
     }
 }
