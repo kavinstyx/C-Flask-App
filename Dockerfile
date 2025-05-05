@@ -12,7 +12,7 @@ COPY . .
 # RUN apt install -y python3-flask  # Already included above
 
 # Compile C binary
-RUN gcc -o employee_app app.c main.c bst.c -Wall -Wextra
+RUN gcc -o employee_app main.c bst.c -Wall -Wextra
 
 # Run Flask app
 CMD ["python3", "app.py"]
